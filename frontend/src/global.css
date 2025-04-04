@@ -1,0 +1,69 @@
+:root {
+    /*base colors*/
+    --hex-bg: #0d0d0d;
+    --hex-bg-scnd: #232020;
+    --hex-matte-text: #c0c0c0;
+    --hex-matte-text-scnd: #006666;
+    /*base colors*/
+
+    /*highlights & accents*/
+    --hex-highlight: #00ff99;
+    --hex-highlight-scnd: #00bfff;
+
+    --hex-accent: #FF7700;
+    --hex-accent-scnd: #9400ff;
+    /*highlights & accents*/
+
+
+    /*glow effects*/
+    --glow-range-start: 10px;
+    --glow-range-end: 20px;
+
+    --glow-primary: 0 0 var(--glow-range-start) var(--hex-highlight), 0 0 var(--glow-range-end) var(--hex-highlight);
+    --glow-secondary: 0 0 var(--glow-range-start) var(--hex-highlight-scnd), 0 0 var(--glow-range-end) var(--hex-highlight-scnd);
+    --glow-accent: 0 0 var(--glow-range-start) var(--hex-accent), 0 0 var(--glow-range-end) var(--hex-accent);
+    --glow-accent-scnd: 0 0 var(--glow-range-start) var(--hex-accent-scnd), 0 0 var(--glow-range-end) var(--hex-accent-scnd);
+    /*glow effects*/
+
+
+    /*font sizings*/
+    --lrg-button-font-size: 3em;
+    --med-button-font-size: 2em;
+    --sml-button-font-size: 1em;
+
+    --vlrg-title-font: 3em;
+    --lrg-title-font: 2.5em;
+    --med-title-font: 2.3em;
+    --small-title-font: 2em;
+
+    --lrg-body-font: 2em;
+    --med-body-font: 1.5em;
+    --sml-body-font: 1em;
+    /*font sizings*/
+
+
+    /*break-points / mixins
+    --small-mobile: 320px;
+    --mobile: 600px;
+    --tablet: 1024px;
+    --small-laptop: 1280px;
+    --desktop: 1600px;
+    large desktops, tv's, etc stop here*/
+    /*break-points / mixins*/
+
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--hex-bg);
+    color: var(--hex-matte-text);
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}

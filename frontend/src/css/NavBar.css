@@ -1,0 +1,74 @@
+@import url("../global.css");
+
+.navbar {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 10rem;
+    column-gap: 3rem;
+    justify-content: space-between;
+    border-bottom: 5px solid green;
+    min-width: 2rem;
+}
+
+.links-section {
+    display: flex;
+    flex-direction: row;
+    column-gap: 3rem;
+    margin-right: 3rem;
+    flex-shrink: 2;
+}
+
+.logo-name {
+    font-size: var(--lrg-title-font);
+    margin-left: 3rem;
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 3rem;
+    width: 4rem;
+    height: 3.5rem;
+    cursor: pointer;
+    min-width: 4rem;
+    max-width: 4rem;
+}
+
+.menu-bar {
+    width: auto;
+    height: .5rem;
+    background-color: var(--hex-highlight-scnd);
+}
+
+@media (max-width: 768px) {
+    .links-section {
+        display: none;
+        margin-left: 2rem;
+    }
+
+    .hamburger-menu {
+        display: flex;
+        margin-right: 2rem;
+    }
+}
+
+@media (max-width: 512px) {
+    .logo-name {
+        font-size: var(--med-title-font);
+    }
+}
+
+@media (max-width: 425px) {
+    .logo-name {
+        font-size: var(--sml-title-font);
+    }
+
+    .hamburger-menu {
+        width: 2rem;
+        max-width: 2rem;
+        min-width: 2rem;
+    }
+}

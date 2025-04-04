@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
+/*
 const BackgroundGlow = (speed, finishedFlashing) => {
     //const [glowColor, setGlowColor] = useState('');
     const [glowSpread, setGlowSpread] = useState(0);
@@ -34,8 +35,7 @@ const BackgroundGlow = (speed, finishedFlashing) => {
 
         return glowStyle;
     }
-
-}
+} */
 
 export const FlashBorder = (offVarColorName, VarFinalColorName, amntOfFlashes, speed) => {
     const [flashColor, setFlashColor] = useState('');

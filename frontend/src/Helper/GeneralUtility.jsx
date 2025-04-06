@@ -4,28 +4,20 @@
 
 
 
-import NavBar from "../Components/NavBar";
-import backgroundImage from "../assets/MetalBackground.jpg";
+//retrieve variables
+export const getCSSVar = (varName) =>
+    getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
 
-function HomePage() {
-    return (
-        <>
-            <header>
-                <NavBar />
-            </header>
-        </>
-    )
-}
-
-export default HomePage;
+export const setCSSVar = (varName, varValue) =>
+    document.documentElement.style.setProperty(varName, varValue);
 
 
 
 //  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: HomePage.jsx
-//  Purpose: Function Component for the Home Page of the site
+//  Filename: GeneralUtility.jsx
+//  Purpose: Provides common functions (and arrow functions) that other files may need.
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************

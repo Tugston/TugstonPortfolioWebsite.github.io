@@ -1,54 +1,68 @@
-import { useState, useEffect, useRef } from "react";
+//Copyright (c) 2025 Vincent "Tugston" Pierce
+//
+//See end of file for extended copyright information
 
-/*
-const BackgroundGlow = (speed, finishedFlashing) => {
-    //const [glowColor, setGlowColor] = useState('');
-    const [glowSpread, setGlowSpread] = useState(0);
+
+
+import { useState, useEffect, useRef } from "react";
+import { getCSSVar, setCSSVar } from "./GeneralUtility";
+
+//adds a background glow to a element that will slowly spread outwards for the given speed
+export const useBackgroundGlowGrow = (speed, finishedSetup) => {
+
     const [glowSpreadCompleted, setGlowSpreadComplete] = useState(false);
 
-    if (finishedFlashing) {
-        useEffect(() => {
-            const glowProgress = setInterval(() => {
-                if (glowSpread < 20) {
-                    setGlowSpread(glowSpread + 0.5); //increase glow spread over time
-                } else {
-                    clearInterval(glowProgress);
-                    setGlowSpreadComplete(true);
-                }
-            }, speed);
+    useEffect(() => {
 
-            return () => clearInterval(glowProgress);
-        }, [glowSpread, speed]);
-
-        const glowStyle = {};
-
-        //use the predefined glow if it is completed, and use the progressive glow if it is not completed
-        if (glowSpreadCompleted) {
-            glowStyle = {
-                boxShadow: `var(--glow-primary)`
-            }
-        } else {
-            glowStyle = {
-                boxShadow: `0 0 ${glowSpread}px ${glowSpread / 2}px ${glowColor}`
-            }
+        //if there is something that is required to finish before this glow can execute!
+        //makes the glow not appear unless its done
+        if (!finishedSetup) {
+            setCSSVar('--glow-range-spread', `0px`);
+            setCSSVar('--glow-range-bloom', `0px`);
+            return;
         }
 
-        return glowStyle;
-    }
-} */
+        //glow spread can be passed in as a var in the future if needed
+        let glowSpread = 0;
 
-export const FlashBorder = (offVarColorName, VarFinalColorName, amntOfFlashes, speed) => {
+        const glowProgress = setInterval(() => {
+
+            //check if glow spread is less than the max amount, can be passed in as variable as needed as well.
+            if (glowSpread < 20) {
+
+                glowSpread += 0.5;
+
+                //update the css vars so the spread emits itself
+                setCSSVar('--glow-range-spread', `${glowSpread / 2}px`);
+                setCSSVar('--glow-range-bloom', `${glowSpread}px`);
+
+                console.log(glowSpread);
+
+            } else {
+                clearInterval(glowProgress);
+                setGlowSpreadComplete(true);
+            }
+        }, speed);
+
+        return () => clearInterval(glowProgress);
+
+    }, [speed, finishedSetup]);
+
+
+    return glowSpreadCompleted;
+
+};
+
+
+
+export const useFlashBorder = (offColorNameVar, finalColorNameVar, amntOfFlashes, speed, finishedFlashing) => {
     const [flashColor, setFlashColor] = useState('');
     const flashAmnt = useRef(0);
 
     useEffect(() => {
 
-        //retrieve the variable values
-        const getCSSVar = (varName) =>
-            getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-
-        const offColor = getCSSVar(offVarColorName);
-        const finalColor = getCSSVar(VarFinalColorName);
+        const offColor = getCSSVar(offColorNameVar);
+        const finalColor = getCSSVar(finalColorNameVar);
 
         flashAmnt.current = 0;
         setFlashColor(offColor);
@@ -65,6 +79,7 @@ export const FlashBorder = (offVarColorName, VarFinalColorName, amntOfFlashes, s
             } else {
                 setFlashColor(finalColor);
                 clearInterval(flash);
+                finishedFlashing(true);
             };
 
         }, speed);
@@ -74,15 +89,15 @@ export const FlashBorder = (offVarColorName, VarFinalColorName, amntOfFlashes, s
             setFlashColor(offColor);
         };
 
-    }, [offVarColorName, VarFinalColorName, amntOfFlashes, speed]);
+    }, [offColorNameVar, finalColorNameVar, amntOfFlashes, speed, finishedFlashing]);
 
     return flashColor;
 }
 
-export const EaseOutFlashBorder = (offVarColorName, offVarFinalColorName, amntOfFlashes, speed, speedMultiplier) => {
+export const useEaseOutFlashBorder = (offColorNameVar, finalColorNameVar, amntOfFlashes, speed, speedDecrement = 0.2, finishedFlashing) => {
     const [flashColor, setFlashColor] = useState('');
     const flashAmnt = useRef(0);
-    const currentSpeed = useRef(speed);
+    const timeoutID = useRef(null);
 
     useEffect(() => {
 
@@ -90,11 +105,12 @@ export const EaseOutFlashBorder = (offVarColorName, offVarFinalColorName, amntOf
         const getCSSVar = (varName) =>
             getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
 
-        const offColor = getCSSVar(offVarColorName);
-        const finalColor = getCSSVar(offVarFinalColorName);
+        const offColor = getCSSVar(offColorNameVar);
+        const finalColor = getCSSVar(finalColorNameVar);
 
         flashAmnt.current = 0;
         setFlashColor(offColor);
+        let currentSpeed = speed;
 
         const flash = () => {
 
@@ -105,17 +121,16 @@ export const EaseOutFlashBorder = (offVarColorName, offVarFinalColorName, amntOf
 
                 if (flashAmnt.current % 2 === 0) {
                     setFlashColor('white');
-                    currentSpeed.current *= speedMultiplier;
                 } else {
                     setFlashColor(offColor);
                 }
 
-                setTimeout(flash, currentSpeed.current);
-
-                console.log("flash called");
+                currentSpeed = Math.max(0, currentSpeed - speedDecrement);
+                timeoutID.current = setTimeout(flash, currentSpeed);
 
             } else {
                 setFlashColor(finalColor);
+                finishedFlashing(true);
             };
 
         };
@@ -123,15 +138,16 @@ export const EaseOutFlashBorder = (offVarColorName, offVarFinalColorName, amntOf
         flash();
 
         return () => {
+            clearTimeout(timeoutID.current);
             setFlashColor(offColor);
         };
 
-    }, [offVarColorName, offVarFinalColorName, amntOfFlashes, speed, speedMultiplier]);
+    }, [offColorNameVar, finalColorNameVar, amntOfFlashes, speed, speedDecrement, finishedFlashing]);
 
     return flashColor;
 }
 
-export const WrapBorder = (finalColor, speed, percentage) => {
+export const useWrapBorder = (finalColor, speed, percentage) => {
     const [borderPercent, setBorderPercent] = useState(0);
     const requestRef = useRef();
 
@@ -174,3 +190,30 @@ export const WrapBorder = (finalColor, speed, percentage) => {
 
     )
 }
+
+
+
+//  Copyright (c) 2025 Vincent "Tugston" Pierce
+//
+//*********************************************
+//  Filename: ButtonEffects.jsx
+//  Purpose: Provides React hook components for buttons
+//  Author: Vincent Pierce or Tugston
+//
+//*********************************************
+//  About:
+//  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
+//  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You should have obtained a copy of the license when downloading the source code.
+//  If not, you may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.

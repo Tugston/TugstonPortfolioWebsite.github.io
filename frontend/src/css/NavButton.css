@@ -48,6 +48,10 @@
     cursor: pointer;
 }
 
+.nav-button:hover .nav-button-text {
+    text-shadow: 0 0.075em 0.075em #000000;
+}
+
 .nav-button:active {
     background-image: none;
     scale: 99%;

@@ -3,66 +3,81 @@
 //See end of file for extended copyright information
 
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "../css/NavButton.css";
 import "../Helper/ButtonEffects";
-import { useBackgroundGlowGrow, useEaseOutFlashBorder, useFlashBorder } from "../Helper/ButtonEffects";
+import { useBackgroundGlowGrow, useEaseOutFlashBorder } from "../Helper/ButtonEffects";
+import { delay } from "../Helper/GeneralUtility";
 
-function NavButton({ text, uniqueButton }) {
+function NavButton({ text, uniqueButton, activated }) {
 
     const primaryFlashAmnt = 11;
-    const secondaryFlashAmnt = 9;
-    const primaryButtonStep = 110;
-    const secondaryButtonStep = 120;
+    const secondaryFlashAmnt = 10;
+    const primaryButtonStep = 50;
+    const secondaryButtonStep = 40;
+    const btnRef = useRef();
 
-    const [buttonConstructed, setButtonConstructed] = useState(false);
+    const [buttonOn, setButtonOn] = useState(false);
 
 
     const primaryBorderFlash = useEaseOutFlashBorder(
         '--hex-bg',
         '--hex-highlight',
         primaryFlashAmnt,
-        1000,
+        400,
         primaryButtonStep,
-        setButtonConstructed
+        setButtonOn
     );
 
     const secondaryBorderFlash = useEaseOutFlashBorder(
         '--hex-bg',
         '--hex-highlight-scnd',
         secondaryFlashAmnt,
-        1000,
+        400,
         secondaryButtonStep,
-        setButtonConstructed
+        setButtonOn
     );
 
 
-    let myStyle = {};
+    //styling control for after the button is free to activate
+    //handles the flashing and color glow turning on
+    let activeStyle = {};
+
+    useBackgroundGlowGrow(30, 20, buttonOn, 1000);
 
     //primary and secondary NavButton css control
     if (uniqueButton === true) {
 
-        let glowCompleted = useBackgroundGlowGrow(30, buttonConstructed);
-
-
-        myStyle = {
+        activeStyle = {
             borderColor: `${secondaryBorderFlash}`,
             boxShadow: `var(--glow-secondary)`
         };
 
     } else {
 
-        useBackgroundGlowGrow(30, buttonConstructed);
-
-        myStyle = {
+        activeStyle = {
             borderColor: `${primaryBorderFlash}`,
             boxShadow: `var(--glow-primary)`
         };
     }
 
+    //do basically what I did for the icon, and use this link to help: https://codepen.io/ZachSaucier/pen/nMRbQN
+    //also move this into another component probably, may be useful?
+    if (!activated)
+
+        //then I can just return the component here!
+        return (
+            <div className="nav-button-container">
+                <button className="nav-button">
+                    <span className="nav-button-text">{text}</span>
+                </button>
+            </div>
+        )
+
+    //return the completed button and its animations
     return (
         <div className="nav-button-container">
-            <button className="nav-button" style={myStyle}>
+            <button ref={btnRef} className="nav-button" style={activeStyle}>
                 <span className="nav-button-text">{text}</span>
             </button>
         </div>

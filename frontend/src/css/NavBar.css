@@ -24,20 +24,74 @@
     flex-shrink: 2;
 }
 
-.logo-name {
-    font-size: var(--lrg-title-font);
+.svg-div {
+    position: relative;
+    margin: auto;
     margin-left: 3rem;
-    user-select: none;
+    width: 320px;
+    overflow: hidden;
 }
 
-.logo-name:hover {
+.svg-div:hover {
+    scale: 101%;
+    cursor: pointer;
+}
+
+svg {
+    z-index: -1;
+}
+
+.logo-name {
+    fill: white;
+    font-size: var(--lrg-title-font);
+    user-select: none;
+    position: relative;
+    pointer-events: none;
+    z-index: 1;
+    top: -48px;
+}
+
+.svg-div:active .logo-name {
+    fill: var(--hex-highlight-scnd);
+}
+
+.svg-div:active {
+    scale: 99%;
+}
+
+.logo-rect {
+    stroke-dasharray: 10 700;
+    stroke-dashoffset: -625;
+
+    /*smooth ends*/
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    stroke-width: 8px;
+    fill: transparent;
+    stroke: transparent;
+
+    transition: stroke-width 1s, stroke-dasharray 1s, stroke-dashoffset 1s, stroke 2s;
+}
+
+/* 10 700 , -525*/
+
+.svg-div:hover .logo-rect {
+    stroke-dasharray: 200 700;
+    stroke-width: 9px;
+    stroke-dashoffset: -435;
+    stroke: var(--hex-accent-scnd);
+    transition: stroke-width 1s, stroke-dasharray 1s;
+}
+
+
+.logo-border:hover {
     cursor: pointer;
     scale: 101%;
-}
+    stroke-width: 2px;
+    border-bottom: 5px solid;
+    stroke-dashoffset: 0;
 
-.logo-name:active {
-    color: var(--hex-highlight-scnd);
-    scale: 99%;
 }
 
 .hamburger-menu {

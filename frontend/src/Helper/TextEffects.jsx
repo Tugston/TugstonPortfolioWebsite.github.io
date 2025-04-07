@@ -6,7 +6,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export const PlainTypeWritterEffect = (text, speed) => {
+export const PlainTypeWritterEffect = (text, speed, completed) => {
     const [displayText, setDisplayText] = useState("");
     const index = useRef(0);
     const displayTextRef = useRef("");
@@ -30,7 +30,7 @@ export const PlainTypeWritterEffect = (text, speed) => {
     return displayText;
 }
 
-export const MiddleTypeWritterEffect = (text, speed) => {
+export const MiddleTypeWritterEffect = (text, speed, completed) => {
     const [displayText, setDisplayText] = useState("");
     const leftIndex = useRef(Math.floor(text.length / 2));
     const rightIndex = useRef(Math.floor(text.length / 2) + 1); //start 1 letter ahead for the right side
@@ -52,6 +52,7 @@ export const MiddleTypeWritterEffect = (text, speed) => {
             //check to see if both directions are finished, since some words could be odd letters
             if (rightIndex.current === text.length && leftIndex.current === 0) {
                 clearInterval(interval);
+                completed(true);
             }
         }, speed);
 

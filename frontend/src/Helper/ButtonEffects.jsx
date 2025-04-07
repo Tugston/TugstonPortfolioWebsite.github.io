@@ -5,55 +5,75 @@
 
 
 import { useState, useEffect, useRef } from "react";
-import { getCSSVar, setCSSVar } from "./GeneralUtility";
+import { getCSSVar, setCSSVar, setSpecificCSSVar } from "./GeneralUtility";
 
 //adds a background glow to a element that will slowly spread outwards for the given speed
-export const useBackgroundGlowGrow = (speed, finishedSetup) => {
+export const useBackgroundGlowGrow = (speed, glowMaxSpread, finishedSetup, delayAmnt) => {
 
-    const [glowSpreadCompleted, setGlowSpreadComplete] = useState(false);
+    const [completedGlow, setCompletedGlow] = useState(false);
+    const isAnimating = useRef(false);
+    const glowSpread = useRef(0);
+    const canStartGlowing = useGlowStartTrigger(finishedSetup, delayAmnt);
+
+    console.log(canStartGlowing);
+
 
     useEffect(() => {
 
-        //if there is something that is required to finish before this glow can execute!
-        //makes the glow not appear unless its done
-        if (!finishedSetup) {
+        //reset the state for all header buttons
+        if (!finishedSetup && !completedGlow) {
             setCSSVar('--glow-range-spread', `0px`);
             setCSSVar('--glow-range-bloom', `0px`);
             return;
         }
 
-        //glow spread can be passed in as a var in the future if needed
-        let glowSpread = 0;
+        if (!canStartGlowing || isAnimating.current || completedGlow) return;
+        isAnimating.current = true;
 
         const glowProgress = setInterval(() => {
+            if (glowSpread.current < glowMaxSpread) {
 
-            //check if glow spread is less than the max amount, can be passed in as variable as needed as well.
-            if (glowSpread < 20) {
-
-                glowSpread += 0.5;
+                glowSpread.current += 0.5;
 
                 //update the css vars so the spread emits itself
-                setCSSVar('--glow-range-spread', `${glowSpread / 2}px`);
-                setCSSVar('--glow-range-bloom', `${glowSpread}px`);
-
-                console.log(glowSpread);
-
-            } else {
+                setCSSVar('--glow-range-spread', `${glowSpread.current / 2}px`);
+                setCSSVar('--glow-range-bloom', `${glowSpread.current}px`);
+            }
+            else {
                 clearInterval(glowProgress);
-                setGlowSpreadComplete(true);
+                setCompletedGlow(true);
             }
         }, speed);
 
         return () => clearInterval(glowProgress);
+    }, [canStartGlowing, glowMaxSpread, speed, delayAmnt])
 
-    }, [speed, finishedSetup]);
+    return completedGlow;
+}
 
+//helper for the delays on the glow is ignored if there is no delay needed
+const useGlowStartTrigger = (finishedSetup, delayAmnt) => {
 
-    return glowSpreadCompleted;
+    const [shouldStartGlow, setShouldStartGlow] = useState(false);
+    const hasStarted = useRef(false);
 
-};
+    useEffect(() => {
+        let glowDelay;
 
+        //check if timer is currently occuring
+        if (hasStarted.current || !finishedSetup) return;
 
+        glowDelay = setTimeout(() => {
+            setShouldStartGlow(true);
+            hasStarted.current = true; //set the timer to be occuring
+        }, delayAmnt);
+
+        return () => clearTimeout(glowDelay);
+
+    }, [finishedSetup, delayAmnt]);
+
+    return shouldStartGlow;
+}
 
 export const useFlashBorder = (offColorNameVar, finalColorNameVar, amntOfFlashes, speed, finishedFlashing) => {
     const [flashColor, setFlashColor] = useState('');
@@ -94,9 +114,8 @@ export const useFlashBorder = (offColorNameVar, finalColorNameVar, amntOfFlashes
     return flashColor;
 }
 
-export const useEaseOutFlashBorder = (offColorNameVar, finalColorNameVar, amntOfFlashes, speed, speedDecrement = 0.2, finishedFlashing) => {
+export const useEaseOutFlashBorder = (offColorNameVar, finalColorNameVar, amntOfFlashes, speed, speedDecrement, finishedFlashing) => {
     const [flashColor, setFlashColor] = useState('');
-    const flashAmnt = useRef(0);
     const timeoutID = useRef(null);
 
     useEffect(() => {
@@ -108,25 +127,29 @@ export const useEaseOutFlashBorder = (offColorNameVar, finalColorNameVar, amntOf
         const offColor = getCSSVar(offColorNameVar);
         const finalColor = getCSSVar(finalColorNameVar);
 
-        flashAmnt.current = 0;
+        //flashAmnt.current = 0;
         setFlashColor(offColor);
+        let flashAmnt = 0;
         let currentSpeed = speed;
 
         const flash = () => {
 
             //flash until hitting the amount of flashes, then hold the final color
-            if (flashAmnt.current < amntOfFlashes) {
+            if (flashAmnt <= amntOfFlashes) {
 
-                flashAmnt.current++;
-
-                if (flashAmnt.current % 2 === 0) {
+                if (flashAmnt % 2 === 0) {
                     setFlashColor('white');
                 } else {
                     setFlashColor(offColor);
                 }
 
-                currentSpeed = Math.max(0, currentSpeed - speedDecrement);
+                flashAmnt++;
+
+                //adjust the speed over time to make it faster blinks
+                currentSpeed = Math.max(0, currentSpeed);
                 timeoutID.current = setTimeout(flash, currentSpeed);
+
+                currentSpeed -= speedDecrement;
 
             } else {
                 setFlashColor(finalColor);

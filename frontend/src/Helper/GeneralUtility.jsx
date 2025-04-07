@@ -8,9 +8,23 @@
 export const getCSSVar = (varName) =>
     getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
 
+//set all the css variables 
 export const setCSSVar = (varName, varValue) =>
     document.documentElement.style.setProperty(varName, varValue);
 
+//set specific component css variables
+export const setSpecificCSSVar = (element, varName, varValue) => {
+    if (element?.style) {
+        element.style.setProperty(varName, varValue);
+    }
+};
+
+//delay
+export function delay(timeMs) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    })
+}
 
 
 //  Copyright (c) 2025 Vincent "Tugston" Pierce

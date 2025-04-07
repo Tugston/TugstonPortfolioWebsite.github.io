@@ -3,36 +3,45 @@
 //See end of file for extended copyright information
 
 import NavButton from "./NavButton";
-import { PlainTypeWritterEffect } from "../Helper/TextEffects";
 import { MiddleTypeWritterEffect } from "../Helper/TextEffects";
-import '../css/NavBar.css'
+import '../css/NavBar.css';
+import { useState } from "react";
 
 function ToggleMenu() {
     const navbar = document.querySelector('.navbar');
     navbar.classList.toggle('active');
 }
 
+//NEED TO SETUP A WAY TO CONTROL THE UNIQUE BUTTON!
+//HOME PAGE SHOULDN"T HAVE A UNIQUE BUTTON!
+//ABOUT ME PAGE HAS ABOUT ME UNIQUE BUTTON!
+//EDUCATION PAGE HAS EDUCATION UNIQUE BUTTON!
+//PROJECTS PAGE HAS PROJECTS UNIQUE BUTTON!
+
 function NavBar() {
     // const [isMenuActive, setIsMenuActive] = useState(false);
+    const [isDoneConstructing, setIsDoneConstructing] = useState(false);
+
+    const constructionTime = 140;
 
     const iconText = MiddleTypeWritterEffect(
         "<Vincent Pierce>",
-        75
+        constructionTime,
+        setIsDoneConstructing
     )
-
-
-    /*const iconText = PlainTypeWritterEffect(
-        "Vincent Pierce",
-        100
-    )*/
 
     return (
         <div className="navbar">
-            <span className="logo-name">{iconText}</span>
+            <div className="svg-div">
+                <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+                    <text className="logo-name" x="50%" y="50%" textAnchor="middle" alignmentBaseline="middle">{iconText}</text>
+                    <rect className="logo-rect" height="60" width="320" />
+                </svg>
+            </div>
             <div className="links-section">
-                <NavButton text="About Me" uniqueButton={true} />
-                <NavButton text="Education" uniqueButton={false} />
-                <NavButton text="Projects" uniqueButton={false} />
+                <NavButton text="About Me" uniqueButton={true} activated={isDoneConstructing} />
+                <NavButton text="Education" uniqueButton={false} activated={isDoneConstructing} />
+                <NavButton text="Projects" uniqueButton={false} activated={isDoneConstructing} />
             </div>
             <div className="hamburger-menu" onClick={ToggleMenu}>
                 <div className="menu-bar"></div>

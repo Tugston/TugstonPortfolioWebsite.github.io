@@ -4,11 +4,8 @@
 
 
 
-@import url("../global.css");
+@import url("../css/NavBar.css");
 
-.nav-button-container {
-    background: none;
-}
 
 .nav-button {
     padding: .5rem;
@@ -28,6 +25,8 @@
 
 .nav-button-text {
     color: var(--hex-accent);
+    pointer-events: none;
+    user-select: none;
 }
 
 /*
@@ -62,7 +61,7 @@
 }
 
 
-@media (max-width: 1117px) {
+@media (max-width: 1150px) {
     .nav-button {
         font-size: var(--sml-button-font-size);
     }
@@ -81,8 +80,8 @@
 /*  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: NavButton.css
-//  Purpose: Formats the navigation buttons in the page headers
+//  Filename: DesktopNavButton.css
+//  Purpose: Formats the Desktop Navigation buttons in the header
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************

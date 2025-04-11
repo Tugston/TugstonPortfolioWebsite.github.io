@@ -1,37 +1,33 @@
-/*Copyright (c) 2025 Vincent "Tugston" Pierce
+//Copyright (c) 2025 Vincent "Tugston" Pierce
 //
-//See end of file for extended copyright information */
+//See end of file for extended copyright information
 
-@import url("../global.css");
 
-.navbar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 10rem;
-    column-gap: 3rem;
-    justify-content: space-between;
+
+function MobileNavButton(params) {
+    return (
+        <div>
+            <span>Mobile Button!</span>
+        </div>
+    )
 }
 
-.links-section {
-    display: flex;
-    flex-direction: row;
-}
+export default MobileNavButton;
 
 
 
-/*  Copyright (c) 2025 Vincent "Tugston" Pierce
+//  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: NavBar.css
-//  Purpose: Provides general container setup for the nav-bars on any devices
+//  Filename: MobileNavButton.jsx
+//  Purpose: Creates a Nav Button for mobile
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************
 //  About:
 //  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
 //  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
-//  
+//
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You should have obtained a copy of the license when downloading the source code.
@@ -43,4 +39,4 @@
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
-//  limitations under the License. */
+//  limitations under the License.

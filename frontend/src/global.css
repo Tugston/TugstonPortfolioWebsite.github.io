@@ -17,13 +17,14 @@ See end of file for extended copyright information*/
     --hex-highlight-scnd: #00bfff;
 
     --hex-accent: #FF7700;
+    --hex-accent-shadow: #b15200;
     --hex-accent-scnd: #9400ff;
     /*highlights & accents*/
 
 
     /*general glow effects*/
-    --glow-range-spread: 10px;
-    --glow-range-bloom: 20px;
+    --glow-range-spread: 1em;
+    --glow-range-bloom: 2em;
 
     --glow-primary: 0 0 var(--glow-range-spread) var(--hex-highlight), 0 0 var(--glow-range-bloom) var(--hex-highlight);
     --glow-secondary: 0 0 var(--glow-range-spread) var(--hex-highlight-scnd), 0 0 var(--glow-range-bloom) var(--hex-highlight-scnd);
@@ -32,6 +33,7 @@ See end of file for extended copyright information*/
     /*general glow effects*/
 
     /*font sizings*/
+    --vlrg-button-font-size: 5em;
     --lrg-button-font-size: 3em;
     --med-button-font-size: 2em;
     --sml-button-font-size: 1em;
@@ -40,6 +42,7 @@ See end of file for extended copyright information*/
     --lrg-title-font: 2.5em;
     --med-title-font: 2.3em;
     --small-title-font: 2em;
+
 
     --lrg-body-font: 2em;
     --med-body-font: 1.5em;

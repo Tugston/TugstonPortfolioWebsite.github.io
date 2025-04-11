@@ -4,45 +4,45 @@
 
 
 
-import React, { lazy, Suspense, useMemo, useState } from "react";
-import backgroundImage from "../assets/MetalBackground.jpg";
-import { useIsDevice, DeviceType } from "../Helper/GeneralUtility";
+import MobileNavButton from "./MobileNavButton"
 
-const DesktopNavBar = React.lazy(() => import('../Components/DesktopNavBar'));
-const MobileNavBar = React.lazy(() => import('../Components/MobileNavBar'));
+import '../css/MobileNavMenu.css';
 
 
+function CloseBox() {
 
-function HomePage() {
+}
 
-    const isMobile = useIsDevice(DeviceType.MOBILE);
-    const isTablet = useIsDevice(DeviceType.TABLET);
-    const isDesktop = useIsDevice(DeviceType.DESKTOP);
-
-    //use the correct Nav Bar (that will be lazy imported) based on the screen
-    const NavBar = useMemo(() => {
-        if (isMobile || isTablet) return MobileNavBar;   //mobile and tablet will be the same
-        return DesktopNavBar;
-    }, [isMobile, isTablet]);
+function NavMenu() {
 
     return (
-        <>
-            <header>
-                <NavBar />
-            </header>
-        </>
+        <div>
+            <div className="selection-box close-box" alt="Closes the navigational menu.">
+                <button className="exit-button"><span className="close-text">X</span></button>
+            </div>
+            <ul>
+                <li>
+                    <MobileNavButton>About Me</MobileNavButton>
+                </li>
+                <li>
+                    <MobileNavButton>Education</MobileNavButton>
+                </li>
+                <li>
+                    <MobileNavButton>Projects</MobileNavButton>
+                </li>
+            </ul>
+        </div>
     )
 }
 
-export default HomePage;
-
+export default NavMenu;
 
 
 //  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: HomePage.jsx
-//  Purpose: Function Component for the Home Page of the site
+//  Filename: MobileNavBar.jsx
+//  Purpose: Creates a React Component for the Drop Down Navigation menu.
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************

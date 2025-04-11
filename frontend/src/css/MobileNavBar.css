@@ -1,0 +1,156 @@
+/*Copyright (c) 2025 Vincent "Tugston" Pierce
+//
+//See end of file for extended copyright information*/
+
+
+
+@import url("../css/NavBar.css");
+
+.mobile-navbar {
+    --transition-speed: .3s;
+    padding-top: 1rem;
+    border-bottom: 2px solid pink;
+    max-width: 100%;
+}
+
+.menu-container {
+    height: fit-content;
+    width: fit-content;
+    margin-right: 3rem;
+}
+
+.logo-text-container {
+    margin-left: 3rem;
+}
+
+.logo-text {
+    font-size: var(--vlrg-title-font);
+}
+
+.hamburger-menu {
+    position: relative;
+    background: none;
+    border-top: 2px solid var(--hex-accent);
+    border-left: 2px solid var(--hex-accent);
+    border-right: 2px solid var(--hex-accent-shadow);
+    border-bottom: 2px solid var(--hex-accent-shadow);
+    border-radius: .2rem;
+    height: 100%;
+    width: 7rem;
+    box-shadow: 0 0 1.25em var(--hex-accent-scnd), 0 0 1em var(--hex-accent);
+    transition: background var(--transition-speed) ease, border var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+
+}
+
+.menu-window {
+    position: absolute;
+    top: 100%;
+    /* Puts it directly below the hamburger */
+    left: 0;
+    /* Align left edge */
+    z-index: 1;
+    min-width: 100%;
+    /* Optional: match button width */
+    background: var(--hex-bg-scnd);
+    border: 2px solid var(--hex-accent-shadow);
+    padding: 1rem;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-menu.opened {
+    background: var(--hex-bg-scnd);
+    border: 2px solid white;
+    box-shadow: 0 0 1.25em white, 0 0 1em var(--hex-highlight-scnd),
+        inset 0px 0px 3em black, 0px 0px .25em var(--hex-bg-scnd);
+}
+
+.hamburger-menu:active {
+    background: var(--hex-accent-scnd);
+}
+
+.hamburger-text-icon {
+    font-size: var(--vlrg-button-font-size);
+    color: var(--hex-highlight-scnd);
+    margin: auto;
+    display: inline-block;
+    transition: transform var(--transition-speed) ease, text-shadow var(--transition-speed) ease;
+}
+
+.hamburger-text-icon.opened {
+    transform: rotate(90deg);
+    text-shadow: 2px 2px 0px rgb(180, 231, 255);
+}
+
+@media (max-width: 621px) {
+    .logo-text {
+        font-size: var(--med-title-font);
+    }
+
+    .hamburger-menu {
+        scale: 90%;
+    }
+}
+
+@media (max-width: 536px) {
+    .logo-text {
+        font-size: var(--small-title-font);
+    }
+
+    .hamburger-menu {
+        scale: 80%;
+    }
+
+    .menu-container {
+        margin-right: 2rem;
+    }
+
+    .logo-text-container {
+        margin-left: 2rem;
+    }
+}
+
+@media (max-width: 496px) {
+    .logo-text {
+        font-size: 1.1em;
+    }
+
+    .hamburger-menu {
+        scale: 50%;
+    }
+
+    .menu-container {
+        margin-right: 1rem;
+    }
+
+    .logo-text-container {
+        margin-left: 1rem;
+    }
+
+}
+
+
+
+/*  Copyright (c) 2025 Vincent "Tugston" Pierce
+//
+//*********************************************
+//  Filename: MobileNavBar.css
+//  Purpose: Provides styling for the Mobile Navigation Bar.
+//  Author: Vincent Pierce or Tugston
+//
+//*********************************************
+//  About:
+//  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
+//  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You should have obtained a copy of the license when downloading the source code.
+//  If not, you may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License. */

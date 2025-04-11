@@ -4,7 +4,7 @@
 
 
 import { useRef, useState } from "react";
-import "../css/NavButton.css";
+import "../css/DesktopNavButton.css";
 import "../Helper/ButtonEffects";
 import { useBackgroundGlowGrow, useEaseOutFlashBorder } from "../Helper/ButtonEffects";
 import { delay } from "../Helper/GeneralUtility";

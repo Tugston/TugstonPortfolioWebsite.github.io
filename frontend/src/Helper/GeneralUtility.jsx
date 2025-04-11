@@ -2,6 +2,8 @@
 //
 //See end of file for extended copyright information
 
+import { useEffect, useState } from "react";
+
 
 
 //retrieve variables
@@ -25,6 +27,49 @@ export function delay(timeMs) {
         setTimeout(resolve, ms);
     })
 }
+
+//SCREEN SCALING//
+
+//enum to easily access the various device types I am supporting
+export const DeviceType = {
+    MOBILE: 'mobile',
+    TABLET: 'tablet',
+    DESKTOP: 'desktop'
+};
+
+const matchMediaQueries = {
+    [DeviceType.MOBILE]: '(max-width: 767px)',
+    [DeviceType.TABLET]: '(min-width: 768px) and (max-width: 1023px)',
+    [DeviceType.DESKTOP]: '(min-width: 1024px)'
+};
+
+export const useIsDevice = (checkDevice) => {
+
+    //check if the window is valid and if matches the current device
+    const [isMatching, setIsMatching] = useState(() => {
+        if (typeof window === 'undefined') return false; //SSR-safe
+        return window.matchMedia(matchMediaQueries[checkDevice]).matches;
+    });
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const matchQ = window.matchMedia(matchMediaQueries[checkDevice]);
+        const handler = (e) => setIsMatching(e.matches);
+
+        //Add the listener
+        matchQ.addEventListener('change', handler);
+        setIsMatching(matchQ.matches);
+
+        return () => matchQ.removeEventListener('change', handler);
+
+    }, [checkDevice])
+
+    return isMatching;
+}
+
+//SCREEN SCALING//
+
 
 
 //  Copyright (c) 2025 Vincent "Tugston" Pierce

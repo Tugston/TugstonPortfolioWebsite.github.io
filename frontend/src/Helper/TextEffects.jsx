@@ -19,6 +19,7 @@ export const PlainTypeWritterEffect = (text, speed, completed) => {
                 index.current++;
             } else {
                 clearInterval(interval); //clear the interval when done typing
+                completed(true);
             }
         }, speed);
 

@@ -1,15 +1,16 @@
 //Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //See end of file for extended copyright information
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense, useRef, useMemo } from 'react';
 import { PlainTypeWritterEffect } from '../Helper/TextEffects';
+import { useIsUnderScreenSize } from '../Helper/GeneralUtility';
 
 //lazy import to provide brief visitors a smooth as possible experience
 const SwipeMenu = React.lazy(() => import('../Components/MobileNavMenu'));
 
 //css
-import '../css/NavBar.css';
-import '../css/MobileNavBar.css';
+import '../css/Header/MobileNavBar.css';
+import '../css/Utility/ColorFade.css';
 
 function MobileNavBar() {
 
@@ -17,10 +18,14 @@ function MobileNavBar() {
     const [rotation, setRotation] = useState(0);
     const [opened, setOpened] = useState(false);
 
+
+
     const constructionTime = 30;
 
+    let shouldUseInitials = useIsUnderScreenSize(424);
+
     const iconText = PlainTypeWritterEffect(
-        "<Vincent Pierce>",
+        shouldUseInitials ? "<VP>" : "<Vincent Pierce>",
         constructionTime,
         setIsDoneConstructing
     );
@@ -35,9 +40,11 @@ function MobileNavBar() {
     }
 
     return (
-        <div className="navbar mobile-navbar" alt="This page's navigation bar">
+        <div className="navbar mobile-navbar vibrant-fade-base border-fade" alt="This page's navigation bar">
             <div className="logo-text-container">
-                <span className="logo-text" alt="Website's text based logo, returns to homepage">{iconText}</span>
+                <button className="home-button-mobile">
+                    <span className="logo-text" alt="Website's text based logo, returns to homepage">{iconText}</span>
+                </button>
             </div>
             <div className="menu-container">
                 <button className={`hamburger-menu ${opened ? 'opened' : ''}`} alt="Hamburger drop down menu, for page navigation." onClick={handleNavButtonClick}><span className={`hamburger-text-icon ${opened ? 'opened' : ''}`}>☰</span>

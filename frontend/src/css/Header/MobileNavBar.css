@@ -4,19 +4,20 @@
 
 
 
-@import url("../css/NavBar.css");
+@import url("../Header/NavBar.css");
 
 .mobile-navbar {
     --transition-speed: .3s;
     padding-top: 1rem;
-    border-bottom: 2px solid pink;
     max-width: 100%;
+    position: relative;
 }
 
 .menu-container {
     height: fit-content;
     width: fit-content;
     margin-right: 3rem;
+    position: relative;
 }
 
 .logo-text-container {
@@ -24,7 +25,18 @@
 }
 
 .logo-text {
+    color: var(--hex-matte-text);
     font-size: var(--vlrg-title-font);
+    user-select: none;
+}
+
+.home-button-mobile {
+    background: none;
+    border: none;
+}
+
+.home-button:active .logo-text {
+    color: var(--hex-highlight-scnd);
 }
 
 .hamburger-menu {
@@ -39,22 +51,7 @@
     width: 7rem;
     box-shadow: 0 0 1.25em var(--hex-accent-scnd), 0 0 1em var(--hex-accent);
     transition: background var(--transition-speed) ease, border var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-
-}
-
-.menu-window {
-    position: absolute;
-    top: 100%;
-    /* Puts it directly below the hamburger */
-    left: 0;
-    /* Align left edge */
-    z-index: 1;
-    min-width: 100%;
-    /* Optional: match button width */
-    background: var(--hex-bg-scnd);
-    border: 2px solid var(--hex-accent-shadow);
-    padding: 1rem;
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+    user-select: none;
 }
 
 .hamburger-menu.opened {
@@ -65,7 +62,7 @@
 }
 
 .hamburger-menu:active {
-    background: var(--hex-accent-scnd);
+    background: var(--hex-accent-scnd) !important;
 }
 
 .hamburger-text-icon {
@@ -111,11 +108,11 @@
 
 @media (max-width: 496px) {
     .logo-text {
-        font-size: 1.1em;
+        font-size: 1.9em;
     }
 
     .hamburger-menu {
-        scale: 50%;
+        scale: 70%;
     }
 
     .menu-container {
@@ -126,6 +123,21 @@
         margin-left: 1rem;
     }
 
+}
+
+@media (max-width: 424px) {
+
+    .logo-text {
+        font-size: 4em;
+    }
+
+    .menu-container {
+        margin-right: .5rem;
+    }
+
+    .logo-text-container {
+        margin-left: 2rem;
+    }
 }
 
 

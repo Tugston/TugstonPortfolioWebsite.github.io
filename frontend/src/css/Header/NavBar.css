@@ -1,48 +1,47 @@
-//Copyright (c) 2025 Vincent "Tugston" Pierce
+/*Copyright (c) 2025 Vincent "Tugston" Pierce
 //
-//See end of file for extended copyright information
+//See end of file for extended copyright information */
 
 
-import '../css/Header/MobileNavButton.css';
 
-function MobileNavButton(props) {
-    const displayText = props.children;
+@import url("../Global.css");
 
-    let backgroundStyle = {};
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 10rem;
+    column-gap: 3rem;
+    justify-content: space-between;
 
-    if (props.uniqueButton === true) {
-        backgroundStyle = {
-            "--mobile-nav-button-background": `var(--hex-bg-scnd)`
-        };
-    } else {
-        backgroundStyle = {
-            "--mobile-nav-button-background": `var(--hex-bg)`
-        };
-    }
-
-    return (
-        <div className="button-container">
-            <button className="mobile-nav-button" style={backgroundStyle}><span className="button-text">{displayText}</span></button>
-        </div>
-    )
+    border-bottom: .2rem solid;
 }
 
-export default MobileNavButton;
+.links-section {
+    display: flex;
+    flex-direction: row;
+}
+
+/*home button is the same for all devices*/
+.home-button {
+    background: none;
+    border: none;
+    margin-left: 3rem;
+}
 
 
-
-//  Copyright (c) 2025 Vincent "Tugston" Pierce
+/*  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: MobileNavButton.jsx
-//  Purpose: Creates a Nav Button for mobile
+//  Filename: NavBar.css
+//  Purpose: Provides general container setup for the nav-bars on any devices
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************
 //  About:
 //  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
 //  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
-//
+//  
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You should have obtained a copy of the license when downloading the source code.
@@ -54,4 +53,4 @@ export default MobileNavButton;
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
-//  limitations under the License.
+//  limitations under the License. */

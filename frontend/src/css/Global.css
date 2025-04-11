@@ -49,7 +49,6 @@ See end of file for extended copyright information*/
     --sml-body-font: 1em;
     /*font sizings*/
 
-
     /*break-points / mixins
     --small-mobile: 320px;
     --mobile: 600px;
@@ -76,6 +75,64 @@ body {
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+/*fades between similar colors to what is on the site*/
+/*not using variables, because I wanted more control with this, so it will have to be updated*/
+/*seperately if the main themes take a big change*/
+@keyframes colorFade {
+    0% {
+        --fade-color: #ff4d4d;
+    }
+
+    10% {
+        --fade-color: #ff944d;
+    }
+
+    20% {
+        --fade-color: #ffe44d;
+    }
+
+    30% {
+        --fade-color: #baff4d;
+    }
+
+    40% {
+        --fade-color: #4dff88;
+    }
+
+    50% {
+        --fade-color: #4dffe4;
+    }
+
+    60% {
+        --fade-color: #4da6ff;
+    }
+
+    70% {
+        --fade-color: #944dff;
+    }
+
+    80% {
+        --fade-color: #ff4ded;
+    }
+
+    90% {
+        --fade-color: #ff4d8d;
+    }
+
+    100% {
+        --fade-color: #ff4d4d;
+    }
+}
+
+
+.vibrant-fade-base {
+    animation: colorFade 30s infinite linear;
+}
+
+.border-fade {
+    border-color: var(--fade-color);
+    transition: border-color 1s ease-in-out;
+}
 
 
 /*  Copyright (c) 2025 Vincent "Tugston" Pierce

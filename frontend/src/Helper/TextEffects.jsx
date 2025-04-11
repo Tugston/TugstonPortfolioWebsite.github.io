@@ -12,6 +12,11 @@ export const PlainTypeWritterEffect = (text, speed, completed) => {
     const displayTextRef = useRef("");
 
     useEffect(() => {
+        index.current = 0;
+        displayTextRef.current = "";
+        setDisplayText("");
+        completed(false);
+
         const interval = setInterval(() => {
             if (index.current < text.length) {
                 displayTextRef.current += text.charAt(index.current);
@@ -27,7 +32,7 @@ export const PlainTypeWritterEffect = (text, speed, completed) => {
             setDisplayText("");
             clearInterval(interval);
         };
-    }, [text, speed]);
+    }, [text, speed, completed]);
     return displayText;
 }
 

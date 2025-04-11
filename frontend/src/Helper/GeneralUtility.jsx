@@ -68,6 +68,25 @@ export const useIsDevice = (checkDevice) => {
     return isMatching;
 }
 
+export const useIsUnderScreenSize = (targetwidth) => {
+
+    const [isUnder, setIsUnder] = useState(false);
+
+    useEffect(() => {
+        function checkWidth() {
+            setIsUnder(window.innerWidth < targetwidth);
+        }
+
+        checkWidth();
+        window.addEventListener('resize', checkWidth);
+
+        return () => window.removeEventListener('resize', checkWidth);
+    }, [targetwidth])
+
+    return isUnder;
+}
+
+
 //SCREEN SCALING//
 
 

@@ -1,21 +1,35 @@
 /*Copyright (c) 2025 Vincent "Tugston" Pierce
 //
-//See end of file for extended copyright information */
+//See end of file for extended copyright information*/
 
-@import url("../global.css");
 
-.navbar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 10rem;
-    column-gap: 3rem;
-    justify-content: space-between;
+.drop-down-menu {
+    background: none;
 }
 
-.links-section {
-    display: flex;
-    flex-direction: row;
+.mobile-header-list {
+    position: absolute;
+    min-width: 120%;
+    left: -.8rem;
+    top: 6.5rem;
+    box-shadow: -.25rem .25rem 0em rgba(0, 0, 0, 0.5);
+}
+
+.mobile-header-btn-container {
+    list-style-type: none;
+    left: 0;
+    z-index: 1;
+    border: 2px solid var(--hex-accent);
+    border-top: none;
+    background: var(--hex-accent-shadow);
+    font-size: var(--sml-button-font-size);
+}
+
+@media (max-width: 424px) {
+
+    .mobile-header-list {
+        margin-left: -.2rem;
+    }
 }
 
 
@@ -23,15 +37,15 @@
 /*  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: NavBar.css
-//  Purpose: Provides general container setup for the nav-bars on any devices
+//  Filename: MobileNavBar.jsx
+//  Purpose: Styles the Mobile Navigation Menu styling.
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************
 //  About:
 //  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
 //  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
-//  
+//
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You should have obtained a copy of the license when downloading the source code.

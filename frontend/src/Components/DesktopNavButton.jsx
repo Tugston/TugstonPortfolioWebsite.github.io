@@ -4,10 +4,9 @@
 
 
 import { useRef, useState } from "react";
-import "../css/DesktopNavButton.css";
+import "../css/Header/DesktopNavButton.css";
 import "../Helper/ButtonEffects";
 import { useBackgroundGlowGrow, useEaseOutFlashBorder } from "../Helper/ButtonEffects";
-import { delay } from "../Helper/GeneralUtility";
 
 function NavButton({ text, uniqueButton, activated }) {
 

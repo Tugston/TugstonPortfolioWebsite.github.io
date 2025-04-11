@@ -4,31 +4,50 @@
 
 
 
-import MobileNavButton from "./MobileNavButton"
+import MobileNavButton from "./MobileNavButton";
+import { MiddleTypeWritterEffect } from "../Helper/TextEffects";
+import { useState } from "react";
 
-import '../css/MobileNavMenu.css';
+import '../css/Header/MobileNavMenu.css';
 
-
-function CloseBox() {
-
-}
+//!!!IMPORTANT!!!///
+//need to setup the control for the buttons like in the desktop version
 
 function NavMenu() {
 
+    const [isDoneConstructing, setIsDoneConstructing] = useState(false);
+
+    const typeTime = 100;
+
+    const topButtonText = MiddleTypeWritterEffect(
+        "About Me",
+        typeTime,
+        setIsDoneConstructing
+    );
+
+    const middleButtonText = MiddleTypeWritterEffect(
+        "Education",
+        typeTime,
+        setIsDoneConstructing
+    )
+
+    const bottomButtonText = MiddleTypeWritterEffect(
+        "Projects",
+        typeTime,
+        setIsDoneConstructing
+    )
+
     return (
-        <div>
-            <div className="selection-box close-box" alt="Closes the navigational menu.">
-                <button className="exit-button"><span className="close-text">X</span></button>
-            </div>
-            <ul>
-                <li>
-                    <MobileNavButton>About Me</MobileNavButton>
+        <div className="drop-down-menu">
+            <ul className="mobile-header-list">
+                <li className="mobile-header-btn-container">
+                    <MobileNavButton uniqueButton={true}>{topButtonText}</MobileNavButton>
                 </li>
-                <li>
-                    <MobileNavButton>Education</MobileNavButton>
+                <li className="mobile-header-btn-container">
+                    <MobileNavButton uniqueButton={false}>{middleButtonText}</MobileNavButton>
                 </li>
-                <li>
-                    <MobileNavButton>Projects</MobileNavButton>
+                <li className="mobile-header-btn-container">
+                    <MobileNavButton uniqueButton={false}>{bottomButtonText}</MobileNavButton>
                 </li>
             </ul>
         </div>

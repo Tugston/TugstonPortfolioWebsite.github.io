@@ -1,48 +1,79 @@
-//Copyright (c) 2025 Vincent "Tugston" Pierce
+/*Copyright (c) 2025 Vincent "Tugston" Pierce
 //
-//See end of file for extended copyright information
+//See end of file for extended copyright information*/
 
 
-import '../css/Header/MobileNavButton.css';
 
-function MobileNavButton(props) {
-    const displayText = props.children;
 
-    let backgroundStyle = {};
-
-    if (props.uniqueButton === true) {
-        backgroundStyle = {
-            "--mobile-nav-button-background": `var(--hex-bg-scnd)`
-        };
-    } else {
-        backgroundStyle = {
-            "--mobile-nav-button-background": `var(--hex-bg)`
-        };
+@keyframes borderColorFade {
+    0% {
+        border-color: #ff4d4d;
     }
 
-    return (
-        <div className="button-container">
-            <button className="mobile-nav-button" style={backgroundStyle}><span className="button-text">{displayText}</span></button>
-        </div>
-    )
+    10% {
+        border-color: #ff944d;
+    }
+
+    20% {
+        border-color: #ffe44d;
+    }
+
+    30% {
+        border-color: #baff4d;
+    }
+
+    40% {
+        border-color: #4dff88;
+    }
+
+    50% {
+        border-color: #4dffe4;
+    }
+
+    60% {
+        border-color: #4da6ff;
+    }
+
+    70% {
+        border-color: #944dff;
+    }
+
+    80% {
+        border-color: #ff4ded;
+    }
+
+    90% {
+        border-color: #ff4d8d;
+    }
+
+    100% {
+        border-color: #ff4d4d;
+    }
 }
 
-export default MobileNavButton;
+
+.vibrant-fade-base {
+    animation: borderColorFade 30s infinite linear;
+}
+
+.border-fade {
+    transition: border-color 2s ease-in-out;
+}
 
 
 
-//  Copyright (c) 2025 Vincent "Tugston" Pierce
+/*  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: MobileNavButton.jsx
-//  Purpose: Creates a Nav Button for mobile
+//  Filename: ColorFade.css
+//  Purpose: Provides color fading utility for different css types
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************
 //  About:
 //  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
 //  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
-//
+//  
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You should have obtained a copy of the license when downloading the source code.
@@ -54,4 +85,4 @@ export default MobileNavButton;
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
-//  limitations under the License.
+//  limitations under the License. */

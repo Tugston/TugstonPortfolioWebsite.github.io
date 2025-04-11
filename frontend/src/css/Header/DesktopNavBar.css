@@ -2,20 +2,17 @@
 //
 //See end of file for extended copyright information */
 
-@import url("../global.css");
+
+
+@import url("../Header/NavBar.css");
 
 .desktop-navbar {
     padding-top: 2rem;
-    border-bottom: 5px solid green;
     min-width: 2rem;
     max-width: 100%;
 }
 
-.home-button {
-    background: none;
-    border: none;
-    margin-left: 3rem;
-}
+
 
 .links-section {
     display: flex;
@@ -44,7 +41,7 @@ svg {
 }
 
 .logo-name {
-    fill: white;
+    fill: var(--hex-matte-text);
     font-size: var(--lrg-title-font);
     user-select: none;
     position: relative;

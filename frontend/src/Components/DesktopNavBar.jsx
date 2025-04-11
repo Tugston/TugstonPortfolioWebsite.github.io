@@ -7,8 +7,8 @@ import { MiddleTypeWritterEffect } from "../Helper/TextEffects";
 import { useState } from "react";
 
 //css
-import '../css/NavBar.css';
-import '../css/DesktopNavBar.css';
+import '../css/Header/DesktopNavBar.css';
+import '../css/Utility/ColorFade.css';
 
 //NEED TO SETUP A WAY TO CONTROL THE UNIQUE BUTTON!
 //HOME PAGE SHOULDN"T HAVE A UNIQUE BUTTON!
@@ -30,7 +30,7 @@ function DesktopNavBar() {
 
     //make alt text say current page or something for current active page button and home button
     return (
-        <div className="navbar desktop-navbar" alt="This page's navigation bar">
+        <div className="navbar desktop-navbar vibrant-fade-base border-fade" alt="This page's navigation bar">
             <button className="home-button" alt="Home page navigation button">
                 <div className="svg-div">
                     <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">

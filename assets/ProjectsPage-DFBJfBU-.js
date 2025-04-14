@@ -1,0 +1,1 @@
+import{j as e}from"./index-Cwsrvk09.js";import{u as s}from"./FetchDeviceComponents-Byk4-veX.js";function o(){const r=s();return e.jsxs(e.Fragment,{children:[e.jsx("header",{children:e.jsx(r,{buttonFormats:[!1,!1,!0]})}),e.jsx("section",{children:e.jsx("h1",{children:"Project Page"})})]})}export{o as default};

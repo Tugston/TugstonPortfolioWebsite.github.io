@@ -1,1 +1,0 @@
-import{j as e}from"./index-FOJhS0-C.js";function r(){return e.jsxs(e.Fragment,{children:[e.jsx("h1",{className:"page-not-found-error-text",children:"404 ERROR!"}),e.jsx("h2",{className:"page-not-found-error-text",children:"The page you are looking for could not be found!"})]})}export{r as default};

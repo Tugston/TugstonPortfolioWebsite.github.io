@@ -1,1 +1,0 @@
-import{j as e}from"./index-FOJhS0-C.js";import{u as n}from"./FetchDeviceComponents-D8FxhGuz.js";function t(){const r=n();return e.jsxs(e.Fragment,{children:[e.jsx("header",{children:e.jsx(r,{})}),e.jsx("section",{children:e.jsx("h1",{children:"Education Page"})})]})}export{t as default};

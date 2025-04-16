@@ -1,1 +1,0 @@
-import{j as e}from"./index-DeCf_clz.js";import{u as t}from"./FetchDeviceComponents-E2vQ30D7.js";function n(){const r=t();return e.jsxs(e.Fragment,{children:[e.jsx("header",{children:e.jsx(r,{buttonFormats:[!1,!0,!1]})}),e.jsx("section",{children:e.jsx("h1",{children:"Education Page"})})]})}export{n as default};

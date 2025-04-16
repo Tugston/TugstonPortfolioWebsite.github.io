@@ -1,0 +1,1 @@
+import{j as e}from"./index-B-fzTlem.js";import{u as t}from"./FetchDeviceComponents-CJ6vvSRw.js";function o(){const r=t();return e.jsxs(e.Fragment,{children:[e.jsx("header",{children:e.jsx(r,{buttonFormats:[!0,!1,!1]})}),e.jsx("section",{children:e.jsx("h1",{children:"About Page"})})]})}export{o as default};

@@ -3,39 +3,35 @@
 //See end of file for extended copyright information
 
 
-import '../css/Header/MobileNavButton.css';
 
-function MobileNavButton(props) {
-    const displayText = props.children;
+import { useNavBarComponent } from "../Helper/FetchDeviceComponents";
 
-    let backgroundStyle = {};
+function ProjectsPage() {
 
-    if (props.uniqueButton === true) {
-        backgroundStyle = {
-            "--mobile-nav-button-background": `var(--hex-bg-scnd)`
-        };
-    } else {
-        backgroundStyle = {
-            "--mobile-nav-button-background": `var(--hex-bg)`
-        };
-    }
+    const NavBar = useNavBarComponent();
 
     return (
-        <div className="button-container">
-            <button className="mobile-nav-button" style={backgroundStyle}><span className="button-text">{displayText}</span></button>
-        </div>
+        <>
+            <header>
+                <NavBar buttonFormats={[false, false, true]} />
+            </header>
+            <section>
+                <h1>Project Page</h1>
+            </section>
+        </>
     )
+
 }
 
-export default MobileNavButton;
+export default ProjectsPage;
 
 
 
 //  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: MobileNavButton.jsx
-//  Purpose: Creates a Nav Button for mobile
+//  Filename: ProjectPage.jsx
+//  Purpose: Function Component for the Project Page of the site
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************

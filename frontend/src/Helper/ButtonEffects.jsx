@@ -15,9 +15,6 @@ export const useBackgroundGlowGrow = (speed, glowMaxSpread, finishedSetup, delay
     const glowSpread = useRef(0);
     const canStartGlowing = useGlowStartTrigger(finishedSetup, delayAmnt);
 
-    console.log(canStartGlowing);
-
-
     useEffect(() => {
 
         //reset the state for all header buttons

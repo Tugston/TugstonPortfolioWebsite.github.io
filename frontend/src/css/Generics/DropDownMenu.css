@@ -1,0 +1,139 @@
+/*Copyright (c) 2025 Vincent "Tugston" Pierce
+//
+//See end of file for extended copyright information*/
+
+
+@import url('../Global.css');
+
+.drop-down-menu-wrapper {
+    background: none;
+    overflow: hidden;
+}
+
+.drop-down-list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+
+    left: -.65rem;
+    top: 110%;
+    min-width: 120%;
+}
+
+.drop-down-btn-container {
+    list-style-type: none;
+    left: 0;
+    z-index: 1;
+    border: 2px solid var(--hex-accent);
+    border-top: none;
+    background: var(--hex-accent-shadow);
+    font-size: var(--sml-button-font-size);
+}
+
+.draw-menu {
+
+    --drop-down-menu-animation-min-width: 5%;
+    --drop-down-menu-animation-max-width: 120%;
+    --drop-down-menu-animation-min-height: 0%;
+
+    /*operation time is used for each animation individually*/
+    --drop-down-menu-operation-time: .5s;
+    --drop-down-menu-delay-time: .5s;
+    /*delay time is how long to wait between*/
+
+    margin: auto;
+    position: absolute;
+    background: var(--hex-accent);
+    height: var(--drop-down-menu-animation-height);
+    width: 120%;
+    max-height: var(--drop-down-menu-animation-height);
+    max-width: 120%;
+
+    left: 50%;
+    top: 110%;
+
+    transform-origin: top center;
+    transform: translateX(-50%);
+}
+
+.drop-menu-open-animation {
+    animation: expand-height var(--drop-down-menu-operation-time),
+        expand-width var(--drop-down-menu-operation-time) var(--drop-down-menu-delay-time) ease-out;
+}
+
+.drop-menu-close-animation {
+    animation: decrease-width var(--drop-down-menu-operation-time),
+        decrease-height var(--drop-down-menu-operation-time) var(--drop-down-menu-delay-time) ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes expand-height {
+    from {
+        height: 0%;
+        max-width: var(--drop-down-menu-animation-min-width);
+    }
+
+    to {
+        height: var(--drop-down-menu-animation-height);
+        max-width: var(--drop-down-menu-animation-min-width);
+    }
+}
+
+@keyframes expand-width {
+    from {
+        max-width: var(--drop-down-menu-animation-min-width);
+    }
+
+    to {
+        max-width: var(--drop-down-menu-animation-max-width);
+    }
+}
+
+@keyframes decrease-width {
+    from {
+        max-width: var(--drop-down-menu-animation-max-width);
+    }
+
+    to {
+        max-width: var(--drop-down-menu-animation-min-width);
+    }
+}
+
+@keyframes decrease-height {
+    from {
+        height: var(--drop-down-menu-animation-height);
+        max-width: var(--drop-down-menu-animation-min-width);
+    }
+
+    to {
+        height: var(--drop-down-menu-animation-min-height);
+        max-width: var(--drop-down-menu-animation-min-width);
+    }
+}
+
+
+
+/*  Copyright (c) 2025 Vincent "Tugston" Pierce
+//
+//*********************************************
+//  Filename: MobileNavBar.jsx
+//  Purpose: Styles the Drop Down menus.
+//  Author: Vincent Pierce or Tugston
+//
+//*********************************************
+//  About:
+//  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
+//  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You should have obtained a copy of the license when downloading the source code.
+//  If not, you may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License. */

@@ -13,6 +13,17 @@
     position: relative;
 }
 
+.menu-line {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    height: 100%;
+    width: 3%;
+    background-color: var(--hex-accent);
+    transition: height var(--transition-speed) ease, width var(--transition-speed) ease;
+    z-index: 2;
+}
+
 .menu-container {
     height: fit-content;
     width: fit-content;
@@ -35,7 +46,7 @@
     border: none;
 }
 
-.home-button:active .logo-text {
+.home-button-mobile:active .logo-text {
     color: var(--hex-highlight-scnd);
 }
 
@@ -48,7 +59,7 @@
     border-bottom: 2px solid var(--hex-accent-shadow);
     border-radius: .2rem;
     height: 100%;
-    width: 7rem;
+    width: 5rem;
     box-shadow: 0 0 1.25em var(--hex-accent-scnd), 0 0 1em var(--hex-accent);
     transition: background var(--transition-speed) ease, border var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     user-select: none;

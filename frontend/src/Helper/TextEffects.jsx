@@ -6,12 +6,14 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export const PlainTypeWritterEffect = (text, speed, completed) => {
+export const PlainTypeWritterEffect = (text, speed, completed, shouldRun = true) => {
     const [displayText, setDisplayText] = useState("");
     const index = useRef(0);
     const displayTextRef = useRef("");
 
     useEffect(() => {
+        if (!shouldRun) return;
+
         index.current = 0;
         displayTextRef.current = "";
         setDisplayText("");
@@ -68,6 +70,36 @@ export const MiddleTypeWritterEffect = (text, speed, completed) => {
         }
     }, [text, speed]);
 
+    return displayText;
+}
+
+export const EraseText = (text, speed, completed, shouldRun = true) => {
+    const [displayText, setDisplayText] = useState(text); //start with the text value coming in
+    const index = useRef(text.length);
+    const displayTextRef = useRef("");
+
+    useEffect(() => {
+        if (!shouldRun) return;
+
+        displayTextRef.current = "";
+        completed(false);
+
+        const interval = setInterval(() => {
+            if (index.current > 0) {
+                displayTextRef.current = text.substring(0, index.current - 1);
+                setDisplayText(() => displayTextRef.current);
+                index.current--;
+            } else {
+                clearInterval(interval); //clear the interval when done typing
+                completed(true);
+            }
+        }, speed);
+
+        return () => {
+            setDisplayText("");
+            clearInterval(interval);
+        };
+    }, [text, speed, completed]);
     return displayText;
 }
 

@@ -1,6 +1,6 @@
 /*Copyright (c) 2025 Vincent "Tugston" Pierce
-
-See end of file for extended copyright information*/
+//
+//See end of file for extended copyright information*/
 
 
 
@@ -43,7 +43,7 @@ See end of file for extended copyright information*/
     --med-title-font: 2.3em;
     --small-title-font: 2em;
 
-
+    --vlrg-body-font: 2.5em;
     --lrg-body-font: 2em;
     --med-body-font: 1.5em;
     --sml-body-font: 1em;
@@ -75,64 +75,25 @@ body {
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-/*fades between similar colors to what is on the site*/
-/*not using variables, because I wanted more control with this, so it will have to be updated*/
-/*seperately if the main themes take a big change*/
-@keyframes colorFade {
-    0% {
-        --fade-color: #ff4d4d;
-    }
+ul {
+    list-style-type: none;
+}
 
-    10% {
-        --fade-color: #ff944d;
-    }
+.column-list {
+    display: flex;
+    flex-direction: column;
+}
 
-    20% {
-        --fade-color: #ffe44d;
-    }
-
-    30% {
-        --fade-color: #baff4d;
-    }
-
-    40% {
-        --fade-color: #4dff88;
-    }
-
-    50% {
-        --fade-color: #4dffe4;
-    }
-
-    60% {
-        --fade-color: #4da6ff;
-    }
-
-    70% {
-        --fade-color: #944dff;
-    }
-
-    80% {
-        --fade-color: #ff4ded;
-    }
-
-    90% {
-        --fade-color: #ff4d8d;
-    }
-
-    100% {
-        --fade-color: #ff4d4d;
-    }
+.row-list {
+    display: flex;
+    flex-direction: row;
 }
 
 
-.vibrant-fade-base {
-    animation: colorFade 30s infinite linear;
+#overlay-menu {
+    box-shadow: -.25rem .25rem 0em rgba(0, 0, 0, 0.5);
 }
 
-.border-fade {
-    border-color: var(--fade-color);
-    transition: border-color 1s ease-in-out;
-}
 
 
 /*  Copyright (c) 2025 Vincent "Tugston" Pierce

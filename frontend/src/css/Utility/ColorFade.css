@@ -4,7 +4,6 @@
 
 
 
-
 @keyframes borderColorFade {
     0% {
         border-color: #ff4d4d;
@@ -53,11 +52,13 @@
 
 
 .vibrant-fade-base {
+    -webkit-animation: borderColorFade 30s infinite linear;
     animation: borderColorFade 30s infinite linear;
 }
 
 .border-fade {
     transition: border-color 2s ease-in-out;
+    -webkit-transition: border-color 2s ease-in-out;
 }
 
 

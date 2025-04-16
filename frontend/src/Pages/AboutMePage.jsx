@@ -4,46 +4,41 @@
 
 
 
-import React, { Suspense, lazy } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { useNavBarComponent } from "../Helper/FetchDeviceComponents";
 
-const HomePage = React.lazy(() => import('./Pages/HomePage'));
-const AboutMePage = React.lazy(() => import('./Pages/AboutMePage'));
-const EducationPage = React.lazy(() => import('./Pages/Education'));
-const ProjectPage = React.lazy(() => import('./Pages/ProjectsPage'));
-const ErrorPage = React.lazy(() => import('./Pages/PageNotFound'));
+function AboutMePage() {
 
+    const NavBar = useNavBarComponent();
 
-function App() {
-  return (
-    <Suspense fallback={<div>Page Loading...</div>}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/AboutMe" element={<AboutMePage />} />
-        <Route path="/Education" element={<EducationPage />} />
-        <Route path="/Projects" element={<ProjectPage />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Suspense>
-  )
+    return (
+        <>
+            <header>
+                <NavBar buttonFormats={[true, false, false]} />
+            </header>
+            <section>
+                <h1>About Page</h1>
+            </section>
+        </>
+    )
+
 }
 
-export default App
+export default AboutMePage;
 
 
 
 //  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: App.jsx
-//  Purpose: Handles the overarching structure of the website
+//  Filename: AboutMePage.jsx
+//  Purpose: Function Component for the About Page of the site
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************
 //  About:
 //  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
 //  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
-//  
+//
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You should have obtained a copy of the license when downloading the source code.

@@ -1,0 +1,9 @@
+@import url('../../css/Global.css');
+
+.page-not-found-error-text {
+    color: var(--hex-accent);
+    text-align: center;
+    margin-top: 3rem;
+    padding: auto;
+    text-transform: uppercase;
+}

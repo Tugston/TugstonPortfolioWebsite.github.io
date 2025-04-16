@@ -1,0 +1,50 @@
+/*Copyright (c) 2025 Vincent "Tugston" Pierce
+//
+//See end of file for extended copyright information*/
+
+.grid-container {
+    display: grid;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.cap-text {
+    text-transform: capitalize;
+}
+
+.upcase-text {
+    text-transform: uppercase;
+}
+
+.section-header-text {
+    font-size: var(--lrg-title-font);
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.section-sub-heading-text {
+    font-size: var(--small-title-font);
+    text-transform: capitalize;
+}
+
+.section-body-text {
+    font-size: var(--sml-body-font);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.section {
+    height: 100vh;
+    margin-left: 0rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .section {
+        text-align: center;
+    }
+}

@@ -4,17 +4,20 @@
 
 
 import { useRef, useState } from "react";
-import "../css/Header/DesktopNavButton.css";
-import "../Helper/ButtonEffects";
-import { useBackgroundGlowGrow, useEaseOutFlashBorder } from "../Helper/ButtonEffects";
+import { useNavigate } from 'react-router-dom';
+import "../../css/Header/DesktopNavButton.css";
+import "../../Helper/ButtonEffects";
+import { useBackgroundGlowGrow, useEaseOutFlashBorder } from "../../Helper/ButtonEffects";
 
-function NavButton({ text, uniqueButton, activated }) {
+function NavButton({ text, uniqueButton, activated, navText }) {
 
     const primaryFlashAmnt = 11;
     const secondaryFlashAmnt = 10;
     const primaryButtonStep = 50;
     const secondaryButtonStep = 40;
     const btnRef = useRef();
+    const navPage = "/" + navText;
+    const navigation = useNavigate();
 
     const [buttonOn, setButtonOn] = useState(false);
 
@@ -60,6 +63,10 @@ function NavButton({ text, uniqueButton, activated }) {
         };
     }
 
+    const handleClick = () => {
+        navigation(navPage);
+    }
+
     //do basically what I did for the icon, and use this link to help: https://codepen.io/ZachSaucier/pen/nMRbQN
     //also move this into another component probably, may be useful?
     if (!activated)
@@ -67,8 +74,8 @@ function NavButton({ text, uniqueButton, activated }) {
         //then I can just return the component here!
         return (
             <div className="nav-button-container">
-                <button className="nav-button">
-                    <span className="nav-button-text">{text}</span>
+                <button className="nav-button" onClick={handleClick}>
+                    <span className="nav-button-text" data-state={uniqueButton}>{text}</span>
                 </button>
             </div>
         )
@@ -76,7 +83,7 @@ function NavButton({ text, uniqueButton, activated }) {
     //return the completed button and its animations
     return (
         <div className="nav-button-container">
-            <button ref={btnRef} className="nav-button" style={activeStyle}>
+            <button ref={btnRef} className="nav-button" style={activeStyle} onClick={handleClick}>
                 <span className="nav-button-text">{text}</span>
             </button>
         </div>

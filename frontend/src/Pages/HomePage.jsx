@@ -4,32 +4,26 @@
 
 
 
-import React, { lazy, Suspense, useMemo, useState } from "react";
-import backgroundImage from "../assets/MetalBackground.jpg";
-import { useIsDevice, DeviceType } from "../Helper/GeneralUtility";
+import { useEffect, useRef, useState } from "react";
+import { useNavBarComponent } from "../Helper/FetchDeviceComponents";
+import '../Components/Body/HomePageHero.jsx';
 
-const DesktopNavBar = React.lazy(() => import('../Components/DesktopNavBar'));
-const MobileNavBar = React.lazy(() => import('../Components/MobileNavBar'));
+import '../css/Pages/HomePage.css';
+import '../css/Pages/PageGeneral.css';
+import HomepageHeroSection from "../Components/Body/HomePageHero.jsx";
 
 
 
 function HomePage() {
 
-    const isMobile = useIsDevice(DeviceType.MOBILE);
-    const isTablet = useIsDevice(DeviceType.TABLET);
-    const isDesktop = useIsDevice(DeviceType.DESKTOP);
-
-    //use the correct Nav Bar (that will be lazy imported) based on the screen
-    const NavBar = useMemo(() => {
-        if (isMobile || isTablet) return MobileNavBar;   //mobile and tablet will be the same
-        return DesktopNavBar;
-    }, [isMobile, isTablet]);
+    const NavBar = useNavBarComponent();
 
     return (
         <>
             <header>
-                <NavBar />
+                <NavBar buttonFormats={[false, false, false]} />
             </header>
+            <HomepageHeroSection />
         </>
     )
 }

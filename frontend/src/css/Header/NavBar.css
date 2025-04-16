@@ -11,9 +11,7 @@
     flex-direction: row;
     align-items: center;
     height: 10rem;
-    column-gap: 3rem;
     justify-content: space-between;
-
     border-bottom: .2rem solid;
 }
 

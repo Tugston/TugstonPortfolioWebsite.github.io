@@ -9,16 +9,15 @@
 .desktop-navbar {
     padding-top: 2rem;
     min-width: 2rem;
-    max-width: 100%;
+    max-width: 120%;
 }
 
-
-
 .links-section {
-    display: flex;
-    flex-direction: row;
+    margin-right: 7rem;
+}
+
+.header-link-list {
     column-gap: 3rem;
-    margin-right: 3rem;
     flex-shrink: 2;
 }
 
@@ -32,13 +31,9 @@
 }
 
 .svg-div:hover {
-    scale: 101%;
     cursor: pointer;
 }
 
-svg {
-    z-index: -1;
-}
 
 .logo-name {
     fill: var(--hex-matte-text);
@@ -91,12 +86,17 @@ svg {
 /*4k screens*/
 @media (min-width: 2000px) {
     .desktop-navbar {
-        max-width: 105rem;
+        max-width: 123rem;
         margin: auto;
     }
 
     .links-section {
-        scale: 150%;
+        scale: 130%;
+    }
+
+    .navbar {
+        justify-content: center;
+        gap: 22.5rem;
     }
 
     .svg-div {

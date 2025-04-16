@@ -2,48 +2,39 @@
 //
 //See end of file for extended copyright information
 
+import React, { useMemo } from "react";
+import { useIsDevice, DeviceType } from "../Helper/GeneralUtility";
 
+const DesktopNavBar = React.lazy(() => import('../Components/NavBar/DesktopNavBar'));
+const MobileNavBar = React.lazy(() => import('../Components/NavBar/MobileNavBar'));
 
-import React, { Suspense, lazy } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom';
+export function useNavBarComponent() {
+    const isMobile = useIsDevice(DeviceType.MOBILE);
+    const isTablet = useIsDevice(DeviceType.TABLET);
 
-const HomePage = React.lazy(() => import('./Pages/HomePage'));
-const AboutMePage = React.lazy(() => import('./Pages/AboutMePage'));
-const EducationPage = React.lazy(() => import('./Pages/Education'));
-const ProjectPage = React.lazy(() => import('./Pages/ProjectsPage'));
-const ErrorPage = React.lazy(() => import('./Pages/PageNotFound'));
+    //use the correct Nav Bar (that will be lazy imported) based on the screen
+    const NavBar = useMemo(() => {
+        if (isMobile || isTablet) return MobileNavBar;   //mobile and tablet will be the same
+        return DesktopNavBar;
+    }, [isMobile, isTablet]);
 
-
-function App() {
-  return (
-    <Suspense fallback={<div>Page Loading...</div>}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/AboutMe" element={<AboutMePage />} />
-        <Route path="/Education" element={<EducationPage />} />
-        <Route path="/Projects" element={<ProjectPage />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Suspense>
-  )
+    return NavBar;
 }
-
-export default App
 
 
 
 //  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: App.jsx
-//  Purpose: Handles the overarching structure of the website
+//  Filename: FetchDeviceComponents.jsx
+//  Purpose: Handles lazy importing components in order to clean up the Pages
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************
 //  About:
 //  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
 //  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
-//  
+//
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You should have obtained a copy of the license when downloading the source code.

@@ -3,47 +3,55 @@
 //See end of file for extended copyright information
 
 
-
-import React, { Suspense, lazy } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom';
-
-const HomePage = React.lazy(() => import('./Pages/HomePage'));
-const AboutMePage = React.lazy(() => import('./Pages/AboutMePage'));
-const EducationPage = React.lazy(() => import('./Pages/Education'));
-const ProjectPage = React.lazy(() => import('./Pages/ProjectsPage'));
-const ErrorPage = React.lazy(() => import('./Pages/PageNotFound'));
+import React, { forwardRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../../css/Header/MobileNavButton.css';
 
 
-function App() {
-  return (
-    <Suspense fallback={<div>Page Loading...</div>}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/AboutMe" element={<AboutMePage />} />
-        <Route path="/Education" element={<EducationPage />} />
-        <Route path="/Projects" element={<ProjectPage />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Suspense>
-  )
-}
+const MobileNavButton = forwardRef((props, ref) => {
+    const displayText = props.children;
+    const navPage = "/" + props.navText;
+    const navigation = useNavigate();
 
-export default App
+    let backgroundStyle = {};
+
+    if (props.uniqueButton === true) {
+        backgroundStyle = {
+            "--mobile-nav-button-background": `var(--hex-bg-scnd)`
+        };
+    } else {
+        backgroundStyle = {
+            "--mobile-nav-button-background": `var(--hex-bg)`
+        };
+    }
+
+    const handleClick = () => {
+        navigation(navPage);
+    }
+
+    return (
+        <div className="button-container">
+            <button className="mobile-nav-button" ref={ref} style={backgroundStyle} onClick={handleClick}><span className="button-text">{displayText}</span></button>
+        </div>
+    )
+});
+
+export default MobileNavButton;
 
 
 
 //  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: App.jsx
-//  Purpose: Handles the overarching structure of the website
+//  Filename: MobileNavButton.jsx
+//  Purpose: Creates a Nav Button for mobile
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************
 //  About:
 //  "TugstonPortfolioWebsite.github.io" is my personal portfolio website, created by myself.
 //  It incorporates React.js, JSX, and CSS. It is my first real project involving front-end web development.
-//  
+//
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You should have obtained a copy of the license when downloading the source code.

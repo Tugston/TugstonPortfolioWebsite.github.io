@@ -1,44 +1,37 @@
-/*Copyright (c) 2025 Vincent "Tugston" Pierce
+//Copyright (c) 2025 Vincent "Tugston" Pierce
 //
-//See end of file for extended copyright information*/
+//See end of file for extended copyright information
 
 
-.drop-down-menu {
-    background: none;
+
+import { useNavBarComponent } from "../Helper/FetchDeviceComponents";
+
+function EducationPage() {
+
+    const NavBar = useNavBarComponent();
+
+    return (
+        <>
+            <header>
+                <NavBar buttonFormats={[false, true, false]} />
+            </header>
+            <section>
+                <h1>Education Page</h1>
+            </section>
+        </>
+    )
+
 }
 
-.mobile-header-list {
-    position: absolute;
-    min-width: 120%;
-    left: -.8rem;
-    top: 6.5rem;
-    box-shadow: -.25rem .25rem 0em rgba(0, 0, 0, 0.5);
-}
-
-.mobile-header-btn-container {
-    list-style-type: none;
-    left: 0;
-    z-index: 1;
-    border: 2px solid var(--hex-accent);
-    border-top: none;
-    background: var(--hex-accent-shadow);
-    font-size: var(--sml-button-font-size);
-}
-
-@media (max-width: 424px) {
-
-    .mobile-header-list {
-        margin-left: -.2rem;
-    }
-}
+export default EducationPage;
 
 
 
-/*  Copyright (c) 2025 Vincent "Tugston" Pierce
+//  Copyright (c) 2025 Vincent "Tugston" Pierce
 //
 //*********************************************
-//  Filename: MobileNavBar.jsx
-//  Purpose: Styles the Mobile Navigation Menu styling.
+//  Filename: EducationPage.jsx
+//  Purpose: Function Component for the Education Page of the site
 //  Author: Vincent Pierce or Tugston
 //
 //*********************************************
@@ -57,4 +50,4 @@
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
-//  limitations under the License. */
+//  limitations under the License.
